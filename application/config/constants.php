@@ -1,6 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+/*Variables de mi proyectos*/
+define("copyright", "&copy; 2016 IW&amp;CO.");
+
 /*
 |--------------------------------------------------------------------------
 | Display Debug backtrace
