@@ -1,5 +1,5 @@
 	<!-- Pie de pagina -->
-	<footer>
+	<footer class="container centered">
 		<p><?php echo (copyright);?></p>
 	</footer>
 

@@ -6,12 +6,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	 ?>
 	
 	<!-- Contenido principal -->
-	<main>
+	<main class="container centered">
 		
-		<ul>
-			<li>Autor 1</li>
-			<li>Autor 1</li>
-			<li>Autor 1</li>
+		<ul class="list-group">
+			<li class="list-group-item">Jorge Segovia Tormo</li>
+			<li class="list-group-item">Javier Molpeceres Gómez</li>
 		</ul>
 
 	</main>

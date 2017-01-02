@@ -6,15 +6,24 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
-		$data["titulo"] = "Bienvenidos a mi web con CI";
+		$data["titulo"] = "Bienvenidos a Spotify";
 		$data["tituloH1"] = "Bienvenidos";
 		$this->load->view('home/index',$data);
 	}
 
 	public function acercade()
 	{
-		$data["titulo"] = "Bienvenidos a mi web con CI";
-		$data["tituloH1"] = "Culpables de este sitio web";
+		$data["titulo"] = "Sobre nosotros";
+		$data["tituloH1"] = "Creadores";
 		$this->load->view('home/acercade',$data);
 	}
+
+	public function registro()
+	{
+		$data["titulo"] = "Registro de Spotify";
+		$data["tituloH1"] = "Registro";
+
+		$this->load->view('home/registro',$data);
+	}
+
 }

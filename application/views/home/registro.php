@@ -7,15 +7,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	
 	<!-- Contenido principal -->
 	<main class="container">
+		
 
-	<?php
-		$this->load->view('inc/login');
-	 ?>
-
+			<?php
+				$this->load->view('inc/registro');
+	 		?>
 
 	</main>
 
 	<?php
 		$this->load->view('inc/pie');
 	 ?>
-

@@ -6,7 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	 ?>
 	
 	<!-- Contenido principal -->
-	<main>
+	<main class="container">
 		
 		<div><?php echo $output; ?></div>
 
