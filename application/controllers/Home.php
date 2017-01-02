@@ -26,4 +26,12 @@ class Home extends CI_Controller {
 		$this->load->view('home/registro',$data);
 	}
 
+	public function reccontrasena()
+	{
+		$data["titulo"] = "Recuperar Contraseña";
+		$data["tituloH1"] = "Recuperar";
+
+		$this->load->view('home/reccontrasena',$data);
+	}
+
 }

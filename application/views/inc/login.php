@@ -35,10 +35,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         			<a class="btn btn-primary" href="./Hola.html" value="Enviar" id="btnEnviar"> Enviar </a>
         		</div>
         		<div class="col-xs-2">
-        			<a href="">Registrarse</a>
+        			<?php echo(anchor('home/registro', 'Registrarse', 'title="ir al Registro"')); ?>
         		</div>
         		<div class="col-xs-5">
-        			<a href="">Recuperar contraseña</a>
+        			<?php echo(anchor('home/reccontrasena', 'Olvidó la Contraseña', 'title="ir a recuperar la contraseña"')); ?>
         		</div>
         	</div>
         
