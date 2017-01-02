@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 	<?php
-		$this->load->view('inc/cabm');
+		$this->load->view('inc/cabbo');
 	 ?>
 	
 	<!-- Contenido principal -->

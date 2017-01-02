@@ -13,9 +13,6 @@ class Backoffice extends CI_Controller {
 
 	public function index()
 	{
-		$data["titulo"] = "Bienvenidos a mi web con CI";
-		$data["tituloH1"] = "Bienvenidos";
-
 		$crud = new Grocery_CRUD();
 
 		$crud->set_table("clientes");
@@ -47,6 +44,6 @@ class Backoffice extends CI_Controller {
 
 		$output = $crud->render();
 
-		$this->load->view('backoffice/canciones',$output);
+		$this->load->view('backoffice/artistas',$output);
 	}
 }
