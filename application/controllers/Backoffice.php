@@ -15,8 +15,8 @@ class Backoffice extends CI_Controller {
 	{
 		$crud = new Grocery_CRUD();
 
-		$crud->set_table("clientes");
-		$crud->set_subject("Clientes");
+		$crud->set_table("usuario");
+		$crud->set_subject("Usuario");
 
 		$output = $crud->render();
 
@@ -27,8 +27,8 @@ class Backoffice extends CI_Controller {
 	{
 		$crud = new Grocery_CRUD();
 
-		$crud->set_table("clientes");
-		$crud->set_subject("Clientes");
+		$crud->set_table("cancion");
+		$crud->set_subject("Cancion");
 
 		$output = $crud->render();
 
@@ -39,8 +39,20 @@ class Backoffice extends CI_Controller {
 	{
 		$crud = new Grocery_CRUD();
 
-		$crud->set_table("clientes");
-		$crud->set_subject("Clientes");
+		$crud->set_table("artista");
+		$crud->set_subject("Artista");
+
+		$output = $crud->render();
+
+		$this->load->view('backoffice/artistas',$output);
+	}
+
+	public function album()
+	{
+		$crud = new Grocery_CRUD();
+
+		$crud->set_table("album");
+		$crud->set_subject("Album");
 
 		$output = $crud->render();
 

@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	
 	<!-- Contenido principal -->
 	<main class="container">
-		<h1>Artistas</h1>
+		<h1>Album</h1>
 		<div><?php echo $output; ?></div>
 
 	</main>
