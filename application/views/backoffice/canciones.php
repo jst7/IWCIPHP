@@ -13,5 +13,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</main>
 
 	<?php
-		$this->load->view('inc/pie');
+		$this->load->view('inc/piebo');
 	 ?>
