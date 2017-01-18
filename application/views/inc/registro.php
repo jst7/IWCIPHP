@@ -1,5 +1,5 @@
 <div class="col-xs-6">
-        <form action="respuesta/<script.php" method="POST" name="f1" id="f1" role="form">
+        <form action="<?php echo base_url();?>index.php/Home/registrar" method="POST" name="f1" id="f1" role="form">
 
 		    <div class="row">
 		        <div class= "col-xs-5">
@@ -52,17 +52,17 @@
 		    	<div class= "col-xs-6">
 		        	<!--4 Contraseña-->
 		        	<div class="form-group">
-		            <label class="form-label" for="Contraseña"> Contraseña: </label> 
+		            <label class="form-label" for="password"> Contraseña: </label> 
 		            <span class="obligatorio">(*)</span>
-		            <input class="form-control" type="password" name="Contraseña" id="Contraseña" required size="25" maxlength="200" placeholder="Contraseña" />
+		            <input class="form-control" type="password" name="password" id="password" required size="25" maxlength="200" placeholder="Contraseña" />
 		            </div>
 		        </div>
 		        <div class= "col-xs-6">
 		            <!--4 Contraseña-->
 		        	<div class="form-group">
-		            <label class="form-label" for="RepContraseña">Rep. Contraseña: </label> 
+		            <label class="form-label" for="Reppassword">Rep. Contraseña: </label> 
 		            <span class="obligatorio">(*)</span>
-		            <input class="form-control" type="password" name="RepContraseña" id="RepContraseña" required size="25" maxlength="200" placeholder="Repetir Contraseña" />
+		            <input class="form-control" type="password" name="Reppassword" id="Reppassword" required size="25" maxlength="200" placeholder="Repetir Contraseña" />
 		            </div>   
 		        </div>
 		    </div>   
@@ -145,7 +145,7 @@
         			<a href="./Recuperar.html">¿Olvidó su contraseña?</a>
         		</div>
         		<div class="col-xs-4">
-        			<a href="./Login.html">Ir al Login</a>
+        			<?php echo(anchor('home/index', 'Volver al Login', 'title="volver al Login"')); ?>
         		</div>
         	</div>
 

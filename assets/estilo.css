@@ -12,3 +12,18 @@
 	transition-duration: 0.4s;
 }
 
+.tablas{
+   text-align: center;
+   
+}
+
+.Titulotabla-Canciones{
+    text-align: center;
+    background-color: #FF7F50;
+}
+
+.Titulotabla-Artistas{
+    text-align: center;
+    background-color: #1E90FF;
+}
+
