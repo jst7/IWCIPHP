@@ -11,8 +11,16 @@ class Backoffice extends CI_Controller {
 		$this->load->library("Grocery_CRUD");
 	}
 
+
+    public function comprobarSesion(){
+    	if(!$this->session->has_userdata('usuarioprivado')){
+    		redirect('/home/index');
+    	}
+    }
+
 	public function index()
 	{
+		$this->comprobarSesion();
 		$crud = new Grocery_CRUD();
 
 		$crud->set_table("usuario");
@@ -25,6 +33,7 @@ class Backoffice extends CI_Controller {
 
 	public function canciones()
 	{
+		$this->comprobarSesion();
 		$crud = new Grocery_CRUD();
 
 		$crud->set_table("cancion");
@@ -37,6 +46,7 @@ class Backoffice extends CI_Controller {
 
 	public function artistas()
 	{
+		$this->comprobarSesion();
 		$crud = new Grocery_CRUD();
 
 		$crud->set_table("artista");
@@ -49,6 +59,7 @@ class Backoffice extends CI_Controller {
 
 	public function album()
 	{
+		$this->comprobarSesion();
 		$crud = new Grocery_CRUD();
 
 		$crud->set_table("album");

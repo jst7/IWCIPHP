@@ -8,7 +8,7 @@
 					<li><?php echo(anchor('inapp/listasusuario', 'Listas de Reproduccion', 'title="volver al Inicio"')); ?></li>
 					<li><?php echo(anchor('inapp/cancionesusuario', 'Canciones', 'title="ir al Registro de la web"')); ?></li>
 					<li><?php echo(anchor('inapp/artistasusuario', 'Artistas', 'title="ir a la informacion de esta página"')); ?></li>
-					<li><?php echo(anchor('home/index', 'Cerrar Sesión', array('class' => 'botonMenu'))); ?></li>
+					<li><?php echo(anchor('home/logout', 'Cerrar Sesión', array('class' => 'botonMenu'))); ?></li>
 					<li>				
 						<form class="navbar-form navbar-left">
 					      <div class="input-group">

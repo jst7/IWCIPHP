@@ -11,15 +11,34 @@ class Home extends CI_Controller {
 		//a esto me refiero como se cargan los models, asi se importa todos los modelos
         $this->load->model("Usuario_dm", '', TRUE);
     }
+
+    public function comprobarSesion(){
+    	if($this->session->has_userdata('usuariopublico')){
+    		redirect('/inapp/index');
+    	}else if($this->session->has_userdata('usuarioprivado')){
+    		redirect('/backoffice/index');
+    	}
+    }
+
 	public function index()
 	{
+		$this->comprobarSesion();
 		$data["titulo"] = "Bienvenidos a Spotify";
 		$data["tituloH1"] = "Bienvenidos";
 		$this->load->view('home/index',$data);
 	}
 
+	public function loginprivado()
+	{
+		$this->comprobarSesion();
+		$data["titulo"] = "LoginPrivado";
+		$data["tituloH1"] = "Administrador";
+		$this->load->view('home/loginprivado',$data);
+	}
+
 	public function acercade()
 	{
+		$this->comprobarSesion();
 		$data["titulo"] = "Sobre nosotros";
 		$data["tituloH1"] = "Creadores";
 		$this->load->view('home/acercade',$data);
@@ -27,6 +46,7 @@ class Home extends CI_Controller {
 
 	public function registro()
 	{
+		$this->comprobarSesion();
 		$data["titulo"] = "Registro de Spotify";
 		$data["tituloH1"] = "Registro";
 
@@ -35,10 +55,45 @@ class Home extends CI_Controller {
 
 	public function reccontrasena()
 	{
+		$this->comprobarSesion();
 		$data["titulo"] = "Recuperar Contraseña";
 		$data["tituloH1"] = "Recuperar";
 
 		$this->load->view('home/reccontrasena',$data);
+	}
+
+	public function login(){
+		$usr = new Usuario_dm();
+
+		$usr->email=$_POST["email"];
+		$usr->password=$_POST["password"];
+
+		$entra = $this->Usuario_dm->Login($usr);
+
+		if($entra){
+			$this->session->set_userdata('usuariopublico','sesionado');
+		}
+		redirect('/inapp/index', 'location');
+	}
+
+	public function loginp(){
+		$usr = new Usuario_dm();
+
+		$usr->email=$_POST["email"];
+		$usr->password=$_POST["password"];
+
+		$entra = $this->Usuario_dm->Loginp($usr);
+
+		if($entra){
+			$this->session->set_userdata('usuarioprivado','sesionado');
+		}
+		redirect('/backoffice/index', 'location');
+	}
+
+	public function logout(){
+		$this->session->unset_userdata('usuariopublico');
+		$this->session->unset_userdata('usuarioprivado');
+		redirect('home/index');
 	}
 
     public function registrar()
@@ -57,6 +112,7 @@ class Home extends CI_Controller {
 		$usr->ciudad = $_POST['Ciudad'];
 		$usr->calle = $_POST['Calle'];
 		$usr->codPostal = (int)$_POST['CodPos'];
+		
 		if($_POST['sexo'] == "mujer"){
 			$usr->sexo = 0;
 		}else{

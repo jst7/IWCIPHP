@@ -2,49 +2,17 @@
 
 class Canciones_dm extends CI_Model {
     
-    function get_all() {
-           // Abrir conexión contra la BD
-    $srv="localhost";
-    $usu="iw";
-    $pwd="123456";
-    $bd="iw";
-    
-    $con = mysqli_connect($srv, $usu, $pwd, $bd);
-    
-    // Preparar sentencia
-    $sql = "select * from cancion order by id ";
-    
-    // Ejecutar sentencia
-    // Obtener resultados
-    $resul = mysqli_query($con, $sql);
-    
-
-    // Cerrar conexion
-    mysqli_close($con);
-        return $resul;
-    }
-
-
-    function get_CancionesArtista($id){
-    $srv="localhost";
-    $usu="iw";
-    $pwd="123456";
-    $bd="iw";
-    
-    $con = mysqli_connect($srv, $usu, $pwd, $bd);
-    // Preparar sentencia
-    $sql = "select * from cancion where artista = $id";
-    
-    // Ejecutar sentencia
-    // Obtener resultados
-    $resul = mysqli_query($con, $sql);
-    
-
-    // Cerrar conexion
-    mysqli_close($con);
-        return $resul;
+    function get_all($ppage) {
+        $aux = ($this->uri->segment(3) != '') ? $this->uri->segment(3) . ', ' : '';
+        // Preparar sentencia
+        $query = "select * from cancion order by id limit " . $aux . $ppage;
+        $query = $this->db->query($query);
+        //var_dump($query->result_array());die();
+        return ( $query->num_rows() > 0 ) ? $query->result_array() : array();
     }
     
-    
+    public function numCanciones() {
+        return $this->db->get('cancion')->num_rows();
+    }
     
 }

@@ -10,7 +10,7 @@
 			</div>
 
 			<div class="col-xs-2">
-				<?php echo(anchor('home/index', 'Cerrar Sesión', array('class' => 'btn btn-danger navbar-btn right'))); ?>
+				<?php echo(anchor('home/logout', 'Cerrar Sesión', array('class' => 'btn btn-danger navbar-btn right'))); ?>
 			</div>
 
 			

@@ -21,39 +21,40 @@ class Usuario_dm extends CI_Model {
     public $nacionalidad;
 
     public function Registrar($usr) {
-           // Abrir conexión contra la BD
-    $srv="localhost";
-    $usu="iw";
-    $pwd="123456";
-    $bd="iw";
-    
-    $con = mysqli_connect($srv, $usu, $pwd, $bd);
-    
-    // Preparar sentencia
-    /* Salidas de pantalla
-    var_dump($usr->nombre);
-    var_dump($usr->login);
-    var_dump($usr->apellidos);
-    var_dump($usr->nacimiento);
-    var_dump($usr->password);
-    var_dump($usr->admin);
-    var_dump($usr->ciudad);
-    var_dump($usr->calle);
-    var_dump($usr->codPostal);
-    var_dump($usr->sexo);
-    var_dump($usr->nacionalidad);
-    */
-    
-    $sql = "insert into usuario ". "(Nombre,Apellidos,Login,email,nacimiento,password,admin,Ciudad,Calle,CodPostal,Sexo,Nacionalidad) ". "Values('$usr->nombre', '$usr->apellidos', '$usr->login','$usr->email',str_to_date('$usr->nacimiento','%d/%m/%Y'),'$usr->password',$usr->admin,'$usr->ciudad','$usr->calle',$usr->codPostal,$usr->sexo,'$usr->nacionalidad');";
-    
-    // Ejecutar sentencia
-    // Obtener resultados
-    $resul = mysqli_query($con, $sql);
 
-    var_dump($resul);
-    // Cerrar conexion
-    mysqli_close($con);
-        return $resul;
+    
+    $query = "insert into usuario ". "(Nombre,Apellidos,Login,email,nacimiento,password,admin,Ciudad,Calle,CodPostal,Sexo,Nacionalidad) ". "Values('$usr->nombre', '$usr->apellidos', '$usr->login','$usr->email',str_to_date('$usr->nacimiento','%d/%m/%Y'),'$usr->password',$usr->admin,'$usr->ciudad','$usr->calle',$usr->codPostal,$usr->sexo,'$usr->nacionalidad');";
+
+    $query = $this->db->query($query);
+
+    return $query;
+}
+
+public function Login($usr) {
+    
+    $query = "select email from usuario where email= '$usr->email' and password= '$usr->password'";
+
+    $query = $this->db->query($query)->num_rows();
+
+    $fin=false;
+    if($query == 1){
+        $fin=true;
     }
     
+    return $fin;
+}
+
+public function Loginp($usr) {
+    
+    $query = "select email from usuario where email= '$usr->email' and password= '$usr->password' and admin=1";
+
+    $query = $this->db->query($query)->num_rows();
+
+    $fin=false;
+    if($query == 1){
+        $fin=true;
+    }
+    
+    return $fin;
+}
 }
