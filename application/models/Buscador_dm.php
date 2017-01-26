@@ -14,7 +14,7 @@ class Buscador_dm extends CI_Model {
     	$aux = ($this->uri->segment(3) != '') ? $this->uri->segment(3) . ', ' : '';
         // Preparar sentencia
 
-	    $query = 'select nombre from cancion where nombre like "%'. $song->termino.'%"'. "order by id limit " . $aux . $ppage;
+	    $query = 'select * from cancion where nombre like "%'. $song->termino.'%"'. "order by id limit " . $aux . $ppage;
 	    $query = $this->db->query($query);
 
     return ( $query->num_rows() > 0 ) ? $query->result_array() : array();

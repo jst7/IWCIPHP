@@ -50,8 +50,15 @@ class Inapp extends CI_Controller {
 	public function index()
 	{	
 		$this->comprobarSesion();
-		$data["titulo"] = "Bienvenidos a Spotify";
-		$data["tituloH1"] = "Hola, ¿Qué quieres hacer?";
+
+		if(!$this->session->has_userdata('escuchando')){
+			$this->session->set_userdata('escuchando','1');
+		}
+
+		$data = array(	'cancion' => $this->Canciones_dm->todas($this->session->userdata('escuchando')),
+            			'paginacion' => $this->pagination->create_links(),
+            			'titulo'=>  "Inicio",
+            			'tituloH1' => "Musica por Artista");
 		$this->load->view('inapp/index',$data);
 	}
 
@@ -74,10 +81,11 @@ class Inapp extends CI_Controller {
 
 		$entra = $this->Buscador_dm->BuscarCancion($search, $porPagina);
 
-		$data = array('canciones' => $entra,
-			'paginacion' => $this->pagination->create_links(),
-            'titulo'=>  "Bienvenidos a Spotify",
-            'tituloH1' => "Todas las Canciones");
+		$data = array(	'cancion' => $this->Canciones_dm->todas($this->session->userdata('escuchando')),
+						'canciones' => $entra,
+						'paginacion' => $this->pagination->create_links(),
+			            'titulo'=>  "Bienvenidos a Spotify",
+			            'tituloH1' => "Todas las Canciones");
 
 		$this->load->view('inapp/buscador',$data);
 
@@ -90,12 +98,27 @@ class Inapp extends CI_Controller {
 		$seccion = 'artistasusuario';
 		$this->paginacion($porPagina, $seccion);
 
-		$data = array('artistas' => $this->Artistas_dm->get_all($porPagina),
+		$data = array(	'cancion' => $this->Canciones_dm->todas($this->session->userdata('escuchando')),
+						'artistas' => $this->Artistas_dm->get_all($porPagina),
             			'paginacion' => $this->pagination->create_links(),
-            			'titulo'=>  "Bienvenidos a Spotify",
+            			'titulo'=>  "Artistas",
             			'tituloH1' => "Musica por Artista");
 
 		$this->load->view('inapp/artistasusuario',$data);
+	}
+
+	public function artista($id)
+	{
+		$this->comprobarSesion();
+
+
+		$data = array(	'cancion' => $this->Canciones_dm->todas($this->session->userdata('escuchando')),
+						'artista' => $this->Artistas_dm->get_artista($id),
+						'canciones'=> $this->Artistas_dm->get_canciones($id),
+            			'titulo'=>  "Artistas",
+            			'tituloH1' => "Musica por Artista");
+
+		$this->load->view('inapp/artista',$data);
 	}
 
 	public function cancionesusuario()
@@ -104,33 +127,40 @@ class Inapp extends CI_Controller {
 		$porPagina = 3;
 		$seccion = 'cancionesusuario';
 		$this->paginacion($porPagina, $seccion);
-		$data["titulo"] = "Bienvenidos a Spotify";
-		$data["tituloH1"] = "Todas las Canciones";
-		//$data["canciones"] = $this->Canciones_dm->get_all();
 
-		$data = array('canciones' => $this->Canciones_dm->get_all($porPagina),
-            'paginacion' => $this->pagination->create_links(),
-            'titulo'=>  "Bienvenidos a Spotify",
-            'tituloH1' => "Todas las Canciones");
+		$data = array(	'cancion' => $this->Canciones_dm->todas($this->session->userdata('escuchando')),
+						'canciones' => $this->Canciones_dm->get_all($porPagina),
+			            'paginacion' => $this->pagination->create_links(),
+			            'titulo'=>  "Canciones",
+			            'tituloH1' => "Todas las Canciones");
 
 		$this->load->view('inapp/cancionesusuario',$data);
+	}
+
+	public function cambiarcancion($song){
+				$this->session->set_userdata('escuchando',$song);
+				redirect('/inapp/cancionesusuario');
+	}
+
+	public function cambiarcancionbusqueda($song){
+				$this->session->set_userdata('escuchando',$song);
+				redirect('/inapp/buscar');
+	}
+
+	public function cambiarcancionartista($artista,$song){
+				$this->session->set_userdata('escuchando',$song);
+				redirect('/inapp/artista/'.$artista);
 	}
 
 	public function listasusuario()
 	{
 		$this->comprobarSesion();
-		$data["titulo"] = "Listas de Reproducción";
-		$data["tituloH1"] = "Listas de Reproducción";
+	
+		$data = array(	'cancion' => $this->Canciones_dm->todas($this->session->userdata('escuchando')),
+						'usuario' => $this->session->userdata('usuario'),
+			            'titulo'=>  "Listas de Reproduccion",
+			            'tituloH1' => "Listas de Reproduccion");
 		$this->load->view('inapp/listasusuario',$data);
-	}
-
-	//reutilizamos la vista
-	public function cancionesArtista($id)
-	{
-		$data["titulo"] = "Canciones Artista";
-		$data["tituloH1"] = "Canciones del artista";
-		$data["canciones"] = $this->Canciones_dm->get_CancionesArtista($id);
-		$this->load->view('inapp/cancionesusuario',$data);
 	}
 
 }

@@ -4,7 +4,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<?php
 		$this->load->view('inc/cabia');
 	 ?>
-	 <!-- Contenido principal -->
+	
+	<!-- Contenido principal -->
 	<main class="container">
 	<style>
 	div.pagination {
@@ -33,21 +34,34 @@ div.pagination a:hover:not(.active) {
 	background-color: #ddd;
 }
 </style>
-	
-	<!-- Contenido principal -->
-	<main class="container">
 
-<h2 align="center">Busqueda</h2>
-<table class="table table-hover tablas">
+
+<div class="well well-lg">
+	<h2 align="center"><?php echo $artista[0]['nombre'] ?></h2>	
+	<h3 align="center"><?php echo $artista[0]['descripcion'] ?></h3>	
+	<h3 align="center"><?php echo $artista[0]['web'] ?></h3>	
+	<div class="row">
+		<h4 align="center">
+		<div class="col-xs-6">
+			<?php echo $artista[0]['genero'] ?>
+		</div>
+		<div class="col-xs-6">
+			<?php echo $artista[0]['lanzamiento'] ?>
+		</div>
+		</h4>
+	</div>
+</div>
+    <table class="table table-hover tablas">
     <tr>
-    	<th class="Titulotabla-Artistas">id: </th>
-        <th class="Titulotabla-Artistas">Nombre: </th>
-        <th class="Titulotabla-Artistas">reproducir: </th>
+    	<th class="Titulotabla-Canciones col-xs-1">id</th>
+        <th class="Titulotabla-Canciones col-xs-11">Nombre</th>
+        <th class="Titulotabla-Canciones col-xs-11">Escuchar</th>
     </tr>
-<?php
+
+    <?php
     	for ($i = 0; $i < count($canciones); ++$i) {
     ?>
-<tr>
+    		<tr>
     			<td>
     	    		<?php
 	    				echo $canciones[$i]['id']; 
@@ -60,24 +74,17 @@ div.pagination a:hover:not(.active) {
     			</td>
     			<td>   
 		    		<?php
-		    			echo(anchor("inapp/cambiarcancionbusqueda/".$canciones[$i]['id'], ' ', array('class' => 'btn btn-primary glyphicon glyphicon-play')));
+		    			echo(anchor("inapp/cambiarcancionartista/".$artista[0]['id'].'/'.$canciones[$i]['id'], ' ', array('class' => 'btn btn-primary glyphicon glyphicon-play')));
 		    		?>    					
     			</td>
     		</tr>
     <?php
     	}
     ?>
-</table>
-    <?php
-    	echo $paginacion;
-    ?>
-	</main>
 
-	<script>
-	function clickArtista(id){
-		location.href="<?php echo base_url();?>index.php/Inapp/cancionesArtista/"+id;
-	}
-	</script>
+</table>
+
+	</main>
 
 	<?php
 		$this->load->view('inc/pieia');

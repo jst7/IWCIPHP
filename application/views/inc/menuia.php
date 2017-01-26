@@ -21,6 +21,9 @@
 					      </div>
 					    </form>
 					</li>
+					<li>
+						<?php echo(anchor('', 'Usuario: '. $this->session->userdata('usuario'), 'title="ir a la informacion de esta página"')); ?>
+					</li>
 				</ul>
 			</div>
 		</nav>

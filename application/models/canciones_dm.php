@@ -10,6 +10,13 @@ class Canciones_dm extends CI_Model {
         //var_dump($query->result_array());die();
         return ( $query->num_rows() > 0 ) ? $query->result_array() : array();
     }
+
+    function todas($valor) {
+        $query = "select * from cancion where id='$valor'";
+        $query = $this->db->query($query);
+        //var_dump($query->result_array());die();
+        return ( $query->num_rows() > 0 ) ? $query->result_array() : array();
+    }
     
     public function numCanciones() {
         return $this->db->get('cancion')->num_rows();

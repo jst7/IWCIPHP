@@ -25,6 +25,15 @@ class Home extends CI_Controller {
 		$this->comprobarSesion();
 		$data["titulo"] = "Bienvenidos a Spotify";
 		$data["tituloH1"] = "Bienvenidos";
+		$data["mensaje"] = "hide";
+		$this->load->view('home/index',$data);
+	}
+	public function loginfail()
+	{
+		$this->comprobarSesion();
+		$data["titulo"] = "Bienvenidos a Spotify";
+		$data["tituloH1"] = "Bienvenidos";
+		$data["mensaje"] = "alert alert-danger";
 		$this->load->view('home/index',$data);
 	}
 
@@ -72,8 +81,12 @@ class Home extends CI_Controller {
 
 		if($entra){
 			$this->session->set_userdata('usuariopublico','sesionado');
+			$this->session->set_userdata('usuario',$_POST["email"]);
+			redirect('/inapp/index', 'location');
 		}
-		redirect('/inapp/index', 'location');
+		else{
+			$this->loginfail();
+		}
 	}
 
 	public function loginp(){

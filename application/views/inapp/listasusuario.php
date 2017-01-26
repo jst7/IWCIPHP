@@ -8,8 +8,40 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<!-- Contenido principal -->
 	<main class="container">
 
-<h2>AQUI VA LO BUENO</h2>
+<h2> Listas de: <?php echo $usuario; ?></h2>
 
+<table class="table table-hover tablas">
+    <tr>
+    	<th class="Titulotabla-Canciones col-xs-1">id</th>
+        <th class="Titulotabla-Canciones col-xs-11">Nombre</th>
+        <th class="Titulotabla-Canciones col-xs-11">ir</th>
+    </tr>
+
+    <?php
+    	//for ($i = 0; $i < count($canciones); ++$i) {
+    ?>
+    		<tr>
+    			<td>
+    	    		<?php
+	  //  				echo $canciones[$i]['id']; 
+	    			?>  								
+    			</td>
+    			<td>   
+		    		<?php
+		//    			echo $canciones[$i]['nombre']; 
+		    		?>    					
+    			</td>
+    			<td>   
+		    		<?php
+		  //  			echo(anchor("inapp/cambiarcancion/".$canciones[$i]['id'], ' ', array('class' => 'btn btn-primary glyphicon glyphicon-play')));
+		    		?>    					
+    			</td>
+    		</tr>
+    <?php
+    	//}
+    ?>
+
+</table>
 
 	</main>
 

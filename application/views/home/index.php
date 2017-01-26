@@ -7,7 +7,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	
 	<!-- Contenido principal -->
 	<main class="container">
-
+	<div class="<?php echo($mensaje); ?>">
+		Error Inicio Sesion
+	</div>
 	<?php
 		$this->load->view('inc/login');
 	 ?>
