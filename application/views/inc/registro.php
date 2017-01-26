@@ -142,7 +142,7 @@
         			<input class="btn btn-primary" type="submit" value="Enviar" id="btnEnviar">
         		</div>
         		<div class="col-xs-4">
-        			<a href="./Recuperar.html">¿Olvidó su contraseña?</a>
+        			<?php echo(anchor('home/reccontrasena', 'Recuperar Contraseña', 'title="Recuperar Contraseña"')); ?>
         		</div>
         		<div class="col-xs-4">
         			<?php echo(anchor('home/index', 'Volver al Login', 'title="volver al Login"')); ?>
