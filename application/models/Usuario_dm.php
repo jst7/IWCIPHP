@@ -57,4 +57,18 @@ public function Loginp($usr) {
     
     return $fin;
 }
+
+public function recuperar($email){
+    $query = "select * from usuario where email = '$email'";
+    $query = $this->db->query($query)->num_rows();
+
+    $fin = false;
+    if($query == 1){
+        $fin=true;
+    }
+    
+    return $fin;
+
+}
+
 }

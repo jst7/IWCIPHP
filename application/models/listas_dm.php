@@ -27,7 +27,7 @@ class listas_dm extends CI_Model {
 
     public function canciones($lista) {
 
-        $query = "select * from listareproducción";
+        $query = "select id, nombre from cancion where id in (select cancion from relacion where lista='$lista')";
         $query = $this->db->query($query);
 
     return ( $query->num_rows() > 0 ) ? $query->result_array() : array();

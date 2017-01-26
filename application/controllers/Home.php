@@ -67,6 +67,24 @@ class Home extends CI_Controller {
 		$this->comprobarSesion();
 		$data["titulo"] = "Recuperar Contraseña";
 		$data["tituloH1"] = "Recuperar";
+		$data["clasemensaje"]="hide";
+
+		$this->load->view('home/reccontrasena',$data);
+	}
+
+	public function recuperar()
+	{
+		$data["titulo"] = "Recuperar Contraseña";
+		$data["tituloH1"] = "Recuperar";
+		$email=$_POST["email"];
+
+		if($this->Usuario_dm->recuperar($email)){
+			$data["clasemensaje"]="alert alert-warning";
+			$data["mensaje"]="Ya hemos enviado el correo de recuperación"; 	
+		}else{
+			$data["clasemensaje"]="alert alert-danger";
+			$data["mensaje"]="No eres usuario de la plataforma, puedes registrarte";
+		}
 
 		$this->load->view('home/reccontrasena',$data);
 	}

@@ -25,6 +25,7 @@ class Artistas_dm extends CI_Model {
         // Preparar sentencia
         $query = "select * from cancion where artista=$id";
         $query = $this->db->query($query);
+
         //var_dump($query->result_array());die();
         return ( $query->num_rows() > 0 ) ? $query->result_array() : array();
     }

@@ -22,8 +22,10 @@ class Buscador_dm extends CI_Model {
 
     public function numbusqueda($termino) {
 
-    	$this->db->like('nombre', $termino);
-        return $this->db->get('cancion')->num_rows();
+        $query = 'select * from cancion where nombre like "%'. $termino.'%"';
+        $query = $this->db->query($query);
+    	
+        return $query->num_rows();
     }
 
 }

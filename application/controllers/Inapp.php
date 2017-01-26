@@ -68,17 +68,18 @@ class Inapp extends CI_Controller {
 		$this->comprobarSesion();
 		$porPagina = 3;
 		$seccion = 'buscar';
-		$this->paginacion($porPagina, $seccion);
+		
 
 		$search = new Buscador_dm();
 
 		if(isset($_POST["termino"])){
 			$search->termino=$_POST["termino"];
 			$this->session->set_userdata('buscando',$_POST["termino"]);
-			$this->session->set_userdata('terminoBusca',$search->termino);
+			$this->session->set_userdata('terminoBusca',$_POST["termino"]);
 		}else{
 			$search->termino = $this->session->userdata('buscando');
 		}
+		$this->paginacion($porPagina, $seccion);
 
 		$entra = $this->Buscador_dm->BuscarCancion($search, $porPagina);
 
@@ -168,9 +169,9 @@ class Inapp extends CI_Controller {
 	public function lista($lista){
 		$this->comprobarSesion();
 	
-		$data = array(	'cancion' => $this->Canciones_dm->todas($this->session->userdata('escuchando')),
+		$data = array(	'cancion' => $this->Canciones_dm->especifica($this->session->userdata('escuchando')),
 						'usuario' => $this->session->userdata('usuario'),
-						'lista' => $this->listas_dm->canciones($lista),
+						'canciones' => $this->listas_dm->canciones($lista),
 			            'titulo'=>  "Listas de Reproduccion",
 			            'tituloH1' => "Listas de Reproduccion");
 		$this->load->view('inapp/lista',$data);

@@ -11,9 +11,12 @@ class Canciones_dm extends CI_Model {
         return ( $query->num_rows() > 0 ) ? $query->result_array() : array();
     }
 
-    function especifica($valor) {//detalle
-        $query = "select * from cancion where id='$valor'";
+    function especifica($id) {//detalle
+        $query = "select * from cancion where id='$id'";
         $query = $this->db->query($query);
+
+        $sumarUno = "update cancion set reproducciones = reproducciones + 1 where id=$id";
+        $this->db->query($sumarUno);
         //var_dump($query->result_array());die();
         return ( $query->num_rows() > 0 ) ? $query->result_array() : array();
     }
