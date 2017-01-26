@@ -7,7 +7,6 @@ class Backoffice extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 
-		$this->load->database(); //para ahorrar esto se puede hacer en el autoload
 		$this->load->library("Grocery_CRUD");
 	}
 

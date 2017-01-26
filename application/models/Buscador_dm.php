@@ -20,7 +20,7 @@ class Buscador_dm extends CI_Model {
     return ( $query->num_rows() > 0 ) ? $query->result_array() : array();
 	}
 
-    public function numCanciones($termino) {
+    public function numbusqueda($termino) {
 
     	$this->db->like('nombre', $termino);
         return $this->db->get('cancion')->num_rows();

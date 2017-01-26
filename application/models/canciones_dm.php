@@ -11,7 +11,7 @@ class Canciones_dm extends CI_Model {
         return ( $query->num_rows() > 0 ) ? $query->result_array() : array();
     }
 
-    function todas($valor) {
+    function especifica($valor) {//detalle
         $query = "select * from cancion where id='$valor'";
         $query = $this->db->query($query);
         //var_dump($query->result_array());die();

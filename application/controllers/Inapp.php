@@ -21,9 +21,9 @@ class Inapp extends CI_Controller {
 
     public function paginacion($porPagina, $seccion){
     	 $config['base_url'] = base_url().'index.php/inapp/'.$seccion;
-        // numero de ofertas de la tabla
+        // numero de objetos de la tabla
     	 if($seccion == 'buscar' ){
-    	 	$config['total_rows'] = $this->Buscador_dm->numCanciones($this->session->userdata('terminoBusca'));
+    	 	$config['total_rows'] = $this->Buscador_dm->numbusqueda($this->session->userdata('terminoBusca'));
     	 }else if($seccion == 'artistasusuario'){
     	 	$config['total_rows'] = $this->Artistas_dm->numCanciones();
     	 }else if($seccion == 'cancionesusuario'){
@@ -56,7 +56,7 @@ class Inapp extends CI_Controller {
 			$this->session->set_userdata('escuchando','1');
 		}
 
-		$data = array(	'cancion' => $this->Canciones_dm->todas($this->session->userdata('escuchando')),
+		$data = array(	'cancion' => $this->Canciones_dm->especifica($this->session->userdata('escuchando')),
             			'paginacion' => $this->pagination->create_links(),
             			'titulo'=>  "Inicio",
             			'tituloH1' => "Musica por Artista");
@@ -82,7 +82,7 @@ class Inapp extends CI_Controller {
 
 		$entra = $this->Buscador_dm->BuscarCancion($search, $porPagina);
 
-		$data = array(	'cancion' => $this->Canciones_dm->todas($this->session->userdata('escuchando')),
+		$data = array(	'cancion' => $this->Canciones_dm->especifica($this->session->userdata('escuchando')),
 						'canciones' => $entra,
 						'paginacion' => $this->pagination->create_links(),
 			            'titulo'=>  "Bienvenidos a Spotify",
@@ -99,7 +99,7 @@ class Inapp extends CI_Controller {
 		$seccion = 'artistasusuario';
 		$this->paginacion($porPagina, $seccion);
 
-		$data = array(	'cancion' => $this->Canciones_dm->todas($this->session->userdata('escuchando')),
+		$data = array(	'cancion' => $this->Canciones_dm->especifica($this->session->userdata('escuchando')),
 						'artistas' => $this->Artistas_dm->get_all($porPagina),
             			'paginacion' => $this->pagination->create_links(),
             			'titulo'=>  "Artistas",
@@ -113,7 +113,7 @@ class Inapp extends CI_Controller {
 		$this->comprobarSesion();
 
 
-		$data = array(	'cancion' => $this->Canciones_dm->todas($this->session->userdata('escuchando')),
+		$data = array(	'cancion' => $this->Canciones_dm->especifica($this->session->userdata('escuchando')),
 						'artista' => $this->Artistas_dm->get_artista($id),
 						'canciones'=> $this->Artistas_dm->get_canciones($id),
             			'titulo'=>  "Artistas",
@@ -129,7 +129,7 @@ class Inapp extends CI_Controller {
 		$seccion = 'cancionesusuario';
 		$this->paginacion($porPagina, $seccion);
 
-		$data = array(	'cancion' => $this->Canciones_dm->todas($this->session->userdata('escuchando')),
+		$data = array(	'cancion' => $this->Canciones_dm->especifica($this->session->userdata('escuchando')),
 						'canciones' => $this->Canciones_dm->get_all($porPagina),
 			            'paginacion' => $this->pagination->create_links(),
 			            'titulo'=>  "Canciones",
@@ -157,7 +157,7 @@ class Inapp extends CI_Controller {
 	{
 		$this->comprobarSesion();
 	
-		$data = array(	'cancion' => $this->Canciones_dm->todas($this->session->userdata('escuchando')),
+		$data = array(	'cancion' => $this->Canciones_dm->especifica($this->session->userdata('escuchando')),
 						'usuario' => $this->session->userdata('usuario'),
 						'listas' => $this->listas_dm->todas($this->session->userdata('usuario')),
 			            'titulo'=>  "Listas de Reproduccion",
