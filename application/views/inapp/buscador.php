@@ -4,10 +4,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<?php
 		$this->load->view('inc/cabia');
 	 ?>
-	
-	<!-- Contenido principal -->
+	 <!-- Contenido principal -->
 	<main class="container">
-<style>
+	<style>
 	div.pagination {
 	display: inline-block;
 	float: right;
@@ -34,13 +33,16 @@ div.pagination a:hover:not(.active) {
 	background-color: #ddd;
 }
 </style>
-<h2 align="center"><?php //echo $tituloH1 ?></h2>
+	
+	<!-- Contenido principal -->
+	<main class="container">
+
+<h2 align="center">CANCIONES</h2>
 <table class="table table-hover tablas">
     <tr>
-        <th class="Titulotabla-Canciones">Nombre</th>
+        <th class="Titulotabla-Artistas">Resultados: </th>
     </tr>
-
-    <?php
+<?php
     	for ($i = 0; $i < count($canciones); ++$i) {
     ?>
     		<tr> 
@@ -53,12 +55,17 @@ div.pagination a:hover:not(.active) {
     <?php
     	}
     ?>
-
 </table>
     <?php
     	echo $paginacion;
     ?>
 	</main>
+
+	<script>
+	function clickArtista(id){
+		location.href="<?php echo base_url();?>index.php/Inapp/cancionesArtista/"+id;
+	}
+	</script>
 
 	<?php
 		$this->load->view('inc/pieia');

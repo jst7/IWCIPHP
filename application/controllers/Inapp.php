@@ -8,6 +8,7 @@ class Inapp extends CI_Controller {
         parent::__construct();
         $this->load->model("Canciones_dm", '', TRUE);
 		$this->load->model("Artistas_dm", '', TRUE);
+		$this->load->model("Buscador_dm", '', TRUE);
 		$this->load->library('pagination');
     }
 
@@ -17,10 +18,16 @@ class Inapp extends CI_Controller {
     	}
     }
 
-    public function paginacion($porPagina){
-    	 $config['base_url'] = base_url().'index.php/inapp/cancionesusuario/';
+    public function paginacion($porPagina, $seccion){
+    	 $config['base_url'] = base_url().'index.php/inapp/'.$seccion;
         // numero de ofertas de la tabla
-        $config['total_rows'] = $this->Canciones_dm->numCanciones();
+    	 if($seccion == 'buscar' ){
+    	 	$config['total_rows'] = $this->Buscador_dm->numCanciones($this->session->userdata('terminoBusca'));
+    	 }else if($seccion == 'artistasusuario'){
+    	 	$config['total_rows'] = $this->Artistas_dm->numCanciones();
+    	 }else if($seccion == 'cancionesusuario'){
+        	$config['total_rows'] = $this->Canciones_dm->numCanciones();
+    	 }
         // items por pagina
         $config['per_page'] = $porPagina;
 
@@ -48,12 +55,46 @@ class Inapp extends CI_Controller {
 		$this->load->view('inapp/index',$data);
 	}
 
+	public function buscar(){
+
+		$this->comprobarSesion();
+		$porPagina = 3;
+		$seccion = 'buscar';
+		$this->paginacion($porPagina, $seccion);
+
+		$search = new Buscador_dm();
+
+		if(isset($_POST["termino"])){
+			$search->termino=$_POST["termino"];
+			$this->session->set_userdata('buscando',$_POST["termino"]);
+			$this->session->set_userdata('terminoBusca',$search->termino);
+		}else{
+			$search->termino = $this->session->userdata('buscando');
+		}
+
+		$entra = $this->Buscador_dm->BuscarCancion($search, $porPagina);
+
+		$data = array('canciones' => $entra,
+			'paginacion' => $this->pagination->create_links(),
+            'titulo'=>  "Bienvenidos a Spotify",
+            'tituloH1' => "Todas las Canciones");
+
+		$this->load->view('inapp/buscador',$data);
+
+	}
+
 	public function artistasusuario()
 	{
 		$this->comprobarSesion();
-		$data["titulo"] = "Bienvenidos a Spotify";
-		$data["tituloH1"] = "Musica por Artista";
-		$data["artistas"] = $this->Artistas_dm->get_all();
+		$porPagina = 3;
+		$seccion = 'artistasusuario';
+		$this->paginacion($porPagina, $seccion);
+
+		$data = array('artistas' => $this->Artistas_dm->get_all($porPagina),
+            			'paginacion' => $this->pagination->create_links(),
+            			'titulo'=>  "Bienvenidos a Spotify",
+            			'tituloH1' => "Musica por Artista");
+
 		$this->load->view('inapp/artistasusuario',$data);
 	}
 
@@ -61,7 +102,8 @@ class Inapp extends CI_Controller {
 	{
 		$this->comprobarSesion();
 		$porPagina = 3;
-		$this->paginacion($porPagina);
+		$seccion = 'cancionesusuario';
+		$this->paginacion($porPagina, $seccion);
 		$data["titulo"] = "Bienvenidos a Spotify";
 		$data["tituloH1"] = "Todas las Canciones";
 		//$data["canciones"] = $this->Canciones_dm->get_all();

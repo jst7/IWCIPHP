@@ -10,9 +10,9 @@
 					<li><?php echo(anchor('inapp/artistasusuario', 'Artistas', 'title="ir a la informacion de esta página"')); ?></li>
 					<li><?php echo(anchor('home/logout', 'Cerrar Sesión', array('class' => 'botonMenu'))); ?></li>
 					<li>				
-						<form class="navbar-form navbar-left">
+						<form class="navbar-form navbar-left" action="<?php echo base_url();?>index.php/inapp/buscar" method="POST" name="f1" id="f1" role="form">
 					      <div class="input-group">
-					        <input type="text" class="form-control" placeholder="Search">
+					        <input type="text" name="termino" class="form-control" placeholder="Titulo Canción">
 					        <div class="input-group-btn">
 					          <button class="btn btn-default" type="submit">
 					            <i>Buscar</i>

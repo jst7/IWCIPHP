@@ -2,26 +2,17 @@
 
 class Artistas_dm extends CI_Model {
     
-    function get_all() {
-           // Abrir conexión contra la BD
-    $srv="localhost";
-    $usu="iw";
-    $pwd="123456";
-    $bd="iw";
-    
-    $con = mysqli_connect($srv, $usu, $pwd, $bd);
-    
-    // Preparar sentencia
-    $sql = "select * from artista order by id ";
-    
-    // Ejecutar sentencia
-    // Obtener resultados
-    $resul = mysqli_query($con, $sql);
-    
+    function get_all($ppage) {
+        $aux = ($this->uri->segment(3) != '') ? $this->uri->segment(3) . ', ' : '';
+        // Preparar sentencia
+        $query = "select * from artista order by id limit " . $aux . $ppage;
+        $query = $this->db->query($query);
+        //var_dump($query->result_array());die();
+        return ( $query->num_rows() > 0 ) ? $query->result_array() : array();
+    }
 
-    // Cerrar conexion
-    mysqli_close($con);
-        return $resul;
+    public function numCanciones() {
+        return $this->db->get('artista')->num_rows();
     }
     
 }

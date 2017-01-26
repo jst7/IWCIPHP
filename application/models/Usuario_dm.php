@@ -20,7 +20,7 @@ class Usuario_dm extends CI_Model {
     public $sexo;
     public $nacionalidad;
 
-    public function Registrar($usr) {
+public function Registrar($usr) {
 
     
     $query = "insert into usuario ". "(Nombre,Apellidos,Login,email,nacimiento,password,admin,Ciudad,Calle,CodPostal,Sexo,Nacionalidad) ". "Values('$usr->nombre', '$usr->apellidos', '$usr->login','$usr->email',str_to_date('$usr->nacimiento','%d/%m/%Y'),'$usr->password',$usr->admin,'$usr->ciudad','$usr->calle',$usr->codPostal,$usr->sexo,'$usr->nacionalidad');";
