@@ -9,6 +9,7 @@ class Inapp extends CI_Controller {
         $this->load->model("Canciones_dm", '', TRUE);
 		$this->load->model("Artistas_dm", '', TRUE);
 		$this->load->model("Buscador_dm", '', TRUE);
+		$this->load->model("listas_dm", '', TRUE);
 		$this->load->library('pagination');
     }
 
@@ -158,9 +159,21 @@ class Inapp extends CI_Controller {
 	
 		$data = array(	'cancion' => $this->Canciones_dm->todas($this->session->userdata('escuchando')),
 						'usuario' => $this->session->userdata('usuario'),
+						'listas' => $this->listas_dm->todas($this->session->userdata('usuario')),
 			            'titulo'=>  "Listas de Reproduccion",
 			            'tituloH1' => "Listas de Reproduccion");
 		$this->load->view('inapp/listasusuario',$data);
+	}
+
+	public function lista($lista){
+		$this->comprobarSesion();
+	
+		$data = array(	'cancion' => $this->Canciones_dm->todas($this->session->userdata('escuchando')),
+						'usuario' => $this->session->userdata('usuario'),
+						'lista' => $this->listas_dm->canciones($lista),
+			            'titulo'=>  "Listas de Reproduccion",
+			            'tituloH1' => "Listas de Reproduccion");
+		$this->load->view('inapp/lista',$data);
 	}
 
 }

@@ -18,27 +18,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </tr>
 
     <?php
-    	//for ($i = 0; $i < count($canciones); ++$i) {
+    	for ($i = 0; $i < count($listas); ++$i) {
     ?>
     		<tr>
     			<td>
     	    		<?php
-	  //  				echo $canciones[$i]['id']; 
+	    				echo $listas[$i]['id']; 
 	    			?>  								
     			</td>
     			<td>   
 		    		<?php
-		//    			echo $canciones[$i]['nombre']; 
+		    			echo $listas[$i]['nombre']; 
 		    		?>    					
     			</td>
     			<td>   
 		    		<?php
-		  //  			echo(anchor("inapp/cambiarcancion/".$canciones[$i]['id'], ' ', array('class' => 'btn btn-primary glyphicon glyphicon-play')));
+		    			echo(anchor("inapp/lista/".$listas[$i]['id'], ' ', array('class' => 'btn btn-primary glyphicon glyphicon-info-sign')));
 		    		?>    					
     			</td>
     		</tr>
     <?php
-    	//}
+    	}
     ?>
 
 </table>
