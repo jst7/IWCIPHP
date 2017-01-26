@@ -68,4 +68,27 @@ class Backoffice extends CI_Controller {
 
 		$this->load->view('backoffice/artistas',$output);
 	}
+
+	public function subir(){
+
+		$this->comprobarSesion();
+		$crud = new Grocery_CRUD();
+
+		$crud->set_table("cancion");
+		$crud->set_subject("Cancion");
+
+		$output = $crud->render();
+
+        $config['upload_path'] = './assets/subidas/';
+        $config['allowed_types'] = 'mp3';
+         
+        $this->load->library('upload', $config);
+ 
+        if(!$this->upload->do_upload()){
+            $this->load->view('backoffice/canciones',$output);
+        }else{
+            $datos["img"]=$this->upload->data();
+            $this->load->view('backoffice/canciones',$output);
+        }
+    }   
 }

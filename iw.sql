@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-01-2017 a las 14:13:43
+-- Tiempo de generación: 26-01-2017 a las 21:08:13
 -- Versión del servidor: 5.7.16-log
 -- Versión de PHP: 5.6.28
 
@@ -90,9 +90,9 @@ CREATE TABLE `cancion` (
 --
 
 INSERT INTO `cancion` (`id`, `nombre`, `duracion`, `lanzamiento`, `reproducciones`, `artista`, `url`, `album`) VALUES
-(1, 'Faint', 3, '2006-01-09', 100654, 1, 'LYU-8IFcDPw', 2),
-(2, 'in the end', 4, '2006-01-16', 3400, 1, 'eVTXPUF4Oz4', 0),
-(5, 'in the endccc', 4, '2006-01-16', 3400, 3, 'eVTXPUF4Oz4', 0),
+(1, 'Faint', 3, '2006-01-09', 23, 1, 'LYU-8IFcDPw', 2),
+(2, 'in the end', 4, '2006-01-16', 3422, 1, 'eVTXPUF4Oz4', 0),
+(5, 'in the endccc', 4, '2006-01-16', 3412, 3, 'eVTXPUF4Oz4', 0),
 (6, 'Faint', 3, '2006-01-09', 100654, 3, 'LYU-8IFcDPw', 2),
 (7, 'in the end', 4, '2006-01-16', 3400, 3, 'eVTXPUF4Oz4', 0);
 
@@ -115,7 +115,28 @@ CREATE TABLE `listareproducción` (
 --
 
 INSERT INTO `listareproducción` (`id`, `nombre`, `genero`, `lanzamiento`, `usuario`) VALUES
-(1, 'yeee', 'malo', '2017-01-04', 16);
+(1, 'yeee', 'malo', '2017-01-04', 16),
+(2, 'jajaja', 'malo', '2017-01-04', 16);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `relacion`
+--
+
+CREATE TABLE `relacion` (
+  `id` int(11) NOT NULL,
+  `cancion` int(11) NOT NULL,
+  `lista` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `relacion`
+--
+
+INSERT INTO `relacion` (`id`, `cancion`, `lista`) VALUES
+(1, 1, 1),
+(2, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -180,6 +201,12 @@ ALTER TABLE `listareproducción`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `relacion`
+--
+ALTER TABLE `relacion`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
@@ -204,6 +231,11 @@ ALTER TABLE `artista`
 --
 ALTER TABLE `cancion`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT de la tabla `relacion`
+--
+ALTER TABLE `relacion`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --

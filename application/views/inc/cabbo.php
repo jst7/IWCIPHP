@@ -5,6 +5,7 @@
 	<title>BackOffice</title>
 
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>/assets/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/estilo.css">
 
 
 <?php 
