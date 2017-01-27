@@ -59,7 +59,7 @@ class Inapp extends CI_Controller {
 		$data = array(	'cancion' => $this->Canciones_dm->especifica($this->session->userdata('escuchando')),
             			'paginacion' => $this->pagination->create_links(),
             			'titulo'=>  "Inicio",
-            			'tituloH1' => "Musica por Artista");
+            			'tituloH1' => "¿Qué quieres hacer?");
 		$this->load->view('inapp/index',$data);
 	}
 

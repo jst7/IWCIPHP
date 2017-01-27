@@ -17,15 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				    Subir Cancion: <input type="file" name="userfile" value="fichero"/>
 				    <input type="submit" value="Enviar"/>
 				</form>
-				<?php
-				if(isset($error)){
-				    echo "<strong style='color:red;'>".$error."</strong>";
-				}
-				 
-				if(isset($img)){
-				    echo "<strong style='color:green;'>".$img["orig_name"]." subido satisfactoriamente </strong>";
-				}
-				?>
+
 		</div>
 
 	</main>
