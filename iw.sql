@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-01-2017 a las 21:08:13
+-- Tiempo de generación: 27-01-2017 a las 08:52:42
 -- Versión del servidor: 5.7.16-log
 -- Versión de PHP: 5.6.28
 
@@ -63,9 +63,9 @@ CREATE TABLE `artista` (
 --
 
 INSERT INTO `artista` (`id`, `nombre`, `genero`, `web`, `lanzamiento`, `descripcion`) VALUES
-(1, 'Fran Pereza', 'Pop', 'franperea.com', '2016-08-08', 'Uno muy moñas aunque hay a gente que le gusta'),
-(2, 'Juanito', 'Requeton', 'franito-lokito.com', '2010-07-14', 'Cantante español to resulon'),
-(3, 'pepe', 'rap', 'lalalala.com', '2017-01-02', 'uno muy falso'),
+(1, 'Fran Perea', 'Pop', 'franperea.com', '2016-08-08', 'Uno que canta llalalalaal'),
+(2, 'Juanito', 'Requeton', 'franito-lokito.com', '2010-07-14', 'Cantante español blablabla'),
+(3, 'pepe', 'rap', 'lalalala.com', '2017-01-02', 'uno muy....'),
 (6, 'jorge', 'malo', 'lalalala.com', '2017-01-10', 'jiji');
 
 -- --------------------------------------------------------
@@ -90,11 +90,13 @@ CREATE TABLE `cancion` (
 --
 
 INSERT INTO `cancion` (`id`, `nombre`, `duracion`, `lanzamiento`, `reproducciones`, `artista`, `url`, `album`) VALUES
-(1, 'Faint', 3, '2006-01-09', 23, 1, 'LYU-8IFcDPw', 2),
-(2, 'in the end', 4, '2006-01-16', 3422, 1, 'eVTXPUF4Oz4', 0),
-(5, 'in the endccc', 4, '2006-01-16', 3412, 3, 'eVTXPUF4Oz4', 0),
+(1, 'Faint', 3, '2006-01-09', 63, 1, 'LYU-8IFcDPw', 2),
+(2, 'in the end', 4, '2006-01-16', 3432, 1, 'eVTXPUF4Oz4', 0),
+(5, 'in the house', 4, '2006-01-16', 3428, 3, 'eVTXPUF4Oz4', 0),
 (6, 'Faint', 3, '2006-01-09', 100654, 3, 'LYU-8IFcDPw', 2),
-(7, 'in the end', 4, '2006-01-16', 3400, 3, 'eVTXPUF4Oz4', 0);
+(7, 'in the cR', 4, '2006-01-16', 3400, 3, 'eVTXPUF4Oz4', 0),
+(8, 'lalalala', 4, '2006-01-16', 34123, 2, 'eVTXPUF4Oz4', 0),
+(9, 'trololo', 4, '2006-01-16', 34123, 4, 'eVTXPUF4Oz4', 0);
 
 -- --------------------------------------------------------
 
@@ -136,7 +138,9 @@ CREATE TABLE `relacion` (
 
 INSERT INTO `relacion` (`id`, `cancion`, `lista`) VALUES
 (1, 1, 1),
-(2, 2, 1);
+(2, 2, 1),
+(3, 5, 1),
+(4, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -230,12 +234,12 @@ ALTER TABLE `artista`
 -- AUTO_INCREMENT de la tabla `cancion`
 --
 ALTER TABLE `cancion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT de la tabla `relacion`
 --
 ALTER TABLE `relacion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
